@@ -1,8 +1,12 @@
 :root {
   --yellow-button: #ff900e;
-  --black-font: #131313;
-  --white-text: #727272;
+  --white-font: #fafafa;
+  --white-text: #c0bdbd;
   --full-white-text: #ffffff;
+  --background-color:#041636;
+}
+body{
+  background-color:var(--background-color) ;
 }
 /********************************************** common style ****************** */
 .explore-common {
@@ -13,6 +17,9 @@
   padding: 15px 15px;
   border: 0;
   border-radius: 5px;
+    box-shadow: 0px 10px 30px rgba(250, 215, 18, 0.3);
+  position: relative;
+    overflow: hidden;
 }
 .explore-button {
   margin: auto;
@@ -34,10 +41,86 @@
 .h2-heading {
   font-weight: bold;
   font-size: 2rem;
-  color: var(--black-font);
+  color: var(--white-font);
   margin-bottom: 15px;
 }
 .card {
+}
+.explore-common span:nth-child(1),.f-card span:nth-child(1){
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  background: linear-gradient(to right,rgb(247, 244, 244),var(--yellow-button));
+  top: 0;
+  left: 0;
+  animation:animation1 4s linear infinite;
+}
+@keyframes animation1{
+  0%{
+    transform:  translateX(-100%);
+
+  }100%{
+    transform: translateX(100%);
+  }
+}
+.explore-common span:nth-child(2),.f-card span:nth-child(2){
+  width: 2px;
+  height: 100%;
+  position: absolute;
+  background: linear-gradient(to bottom,rgb(247, 244, 244),var(--yellow-button));
+  top: 0;
+  right: 0;
+  animation:animation2 4s linear infinite;
+}
+@keyframes animation2{
+  0%{
+    transform:  translateY(-100%);
+
+  }100%{
+    transform: translateY(100%);
+  }
+}
+.explore-common span:nth-child(3),.f-card span:nth-child(3){
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  background: linear-gradient(to left,rgb(247, 244, 244),var(--yellow-button));
+  bottom: 0;
+  right: 0;
+  animation:animation3 4s linear infinite;
+}
+@keyframes animation3{
+  0%{
+    transform:  translateX(100%);
+
+  }100%{
+    transform: translateX(-100%);
+  }
+}
+.explore-common span:nth-child(4),.f-card span:nth-child(4){
+  width: 2px;
+  height: 100%;
+  position: absolute;
+  background: linear-gradient(to top,rgb(247, 244, 244),var(--yellow-button));
+  bottom: 0;
+  left: 0;
+  animation:animation4 4s linear infinite;
+}
+@keyframes animation4{
+  0%{
+    transform:  translateY(100%);
+
+  }100%{
+    transform: translateY(-100%);
+  }
+}
+.explore-common:hover {
+  background-color: var(--white-font);
+  color: var(--yellow-button);
+  transition: all 1s ease-in-out;
+}
+.explore-common:hover span {
+  background: var(--yellow-button);
 }
 /***************************************************** main style start********************** */
 * {
@@ -46,14 +129,38 @@
 }
 body {
   font-family: "Work Sans", sans-serif;
+  padding-top: 10px;
 }
-.hide {
-  display: none;
-}
+/* **************************navbar*********************** */
+
+
 nav {
   width: 90%;
   margin: auto;
-  border: 1px solid #ff900e;
+  display: flex;
+  justify-content: space-between;
+}
+.left-nav h3{
+  color: var(--white-font);
+  font-size: 1.5rem;
+}
+.right-nav ul {
+list-style-type: none;
+display: flex;
+justify-content: flex-end;
+}
+.right-nav ul li a{
+padding: 15px;
+text-decoration: none;
+margin: 3px;
+font-size: 17px;
+font-weight: 700;
+color: var(--white-font);
+
+}
+.right-nav ul li a:hover{
+  background: var(--yellow-button);
+  color: var(--background-color);
 }
 /********************************** banner  section************************ */
 .banner {
@@ -76,7 +183,9 @@ nav {
   line-height: 5.5vw;
   text-align: center;
   margin-bottom: 10px;
-  color: var(--black-font);
+  color: var(--white-font);
+  animation: banner-animation 2s linear infinite;
+  animation-direction: alternate-reverse;
 }
 
 .banner-image {
@@ -87,6 +196,16 @@ nav {
 .banner-image img {
   width: 100%;
 }
+@keyframes banner-animation{
+0%{
+  opacity: 0;
+
+}
+100%{
+  opacity: 1;
+}
+}
+
 /* ***************************** feature section **************************************************************/
 .feature {
   width: 90%;
@@ -143,6 +262,11 @@ nav {
   margin-bottom: 20px;
   margin-top: 10px;
 }
+.feature-left img:hover{
+  
+  transform:rotateY(360deg);
+  transition: transform 2s ease-in-out ;
+}
 /* ****************************************Love enjoy Feature************************* */
 .love-feature {
   width: 90%;
@@ -177,15 +301,22 @@ nav {
 }
 .card {
   width: 70%;
-
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 15px 30px;
   border-radius: 5px;
   margin-bottom: 15px;
 }
+ .card:nth-child(odd):hover{
+  transform: skew(-10deg);
+}
+ .card:nth-child(even):hover{
+  transform: skew(10deg);
+}
 .card-heading {
   font-size: 1.3rem;
   font-weight: 900;
+  color: var(--white-font);
+  margin-bottom: 10px;
 }
 .experience {
   display: flex;
@@ -211,13 +342,19 @@ nav {
   flex-direction: row;
 }
 .f-card {
-  border: 1px solid var(--yellow-button);
+  /* border: 1px solid var(--yellow-button); */
   text-align: center;
   padding: 20px;
   border-radius: 2px;
   flex: 1;
   margin: 30px;
-}
+  color: var(--white-font);
+  position: relative;
+  overflow: hidden;
+  animation: flip-animation 2s timing-function delay iteration-count direction fill-mode;
+} 
+
+  
 .f-card p {
   text-align: center;
 }
@@ -244,6 +381,18 @@ nav {
   justify-content: space-evenly;
   margin-top: 50px;
 }
+.sponsor-section .h2-heading{
+  animation: heading-animation 3s linear infinite;
+}
+@keyframes heading-animation{
+  0%{
+    opacity: 0;
+    color: linear-gradient(to right );
+  }
+  100%{
+    opacity: 1;
+  }
+}
 .s-logo {
   flex: 1;
   padding: 10px;
@@ -265,6 +414,20 @@ footer p {
 /**************************************************** media query ******************/
 
 @media only screen and (max-width: 768px) {
+nav{
+  display: flex;
+  flex-direction: column;
+}
+.right-nav ul{
+flex-direction: column;
+justify-content: center;
+text-align: center;
+margin: 20px;
+}
+.right-nav ul li{
+  margin: 10px;
+}
+
   .banner {
     flex-direction: column-reverse;
   }
@@ -312,6 +475,8 @@ footer p {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
+
+
 
 /* **************** */
   .fact-cards {
